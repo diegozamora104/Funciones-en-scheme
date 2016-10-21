@@ -1,0 +1,32 @@
+(define reversa
+  (lambda(ls)
+    (cosa ls '())
+ ))
+
+(define cosa
+  (lambda(ls empty)
+    (if (null? ls)
+        empty
+        (cosa (cdr ls) (cons (car ls) empty))
+        )
+    )
+  )           
+
+(define temp
+  (lambda(lista fn lista_pos n lista_vacia)
+    (cond
+      ((null? lista) (reversa lista_vacia))
+      ((null? lista_pos) (temp (cdr lista) fn lista_pos (+ n 1) (cons (car lista) lista_vacia)))
+      ((equal? n (car lista_pos)) (temp (cdr lista) fn (cdr lista_pos) (+ n 1) (cons (fn (car lista)) lista_vacia)))
+      (else
+       (temp (cdr lista) fn lista_pos (+ n 1) (cons (car lista) lista_vacia)))
+      )
+    )
+  )
+
+(define selectivemap
+  (lambda(lista fn lista_pos)(temp lista fn lista_pos 1 '())
+    )
+  )
+
+;(selectivemap '(1 2 3 4 5) (lambda(x)(+ x x)) '(2 3))
