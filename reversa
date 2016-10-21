@@ -1,0 +1,12 @@
+(define reversa
+  (lambda(ls)
+    (cosa ls '())
+ ))
+
+(define cosa
+  (lambda(ls empty)
+    (if (null? ls)
+        empty
+        (cosa (cdr ls) (cons (car ls) empty)))))
+       
+  
