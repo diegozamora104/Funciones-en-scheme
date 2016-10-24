@@ -1,0 +1,21 @@
+(#%require (only racket/base random))
+
+(define (azar lista random_num cont)
+  (if (= random_num cont)
+      (car lista)
+      (azar (cdr lista) random_num (+ cont 1))
+      )
+  )
+
+(define (contar lista num lista_nueva)
+  (if (null? lista)
+      (azar lista_nueva (random num) 0)
+      (contar (cdr lista) (+ num 1) (cons (car lista) lista_nueva))
+      )
+  )
+
+(define (roulette lista)
+  (contar lista 0 '())
+  )
+
+;(define bingo (roulette '("par de patos" "trece" "cuatro")))
