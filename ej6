@@ -1,0 +1,12 @@
+(define empy_list '())
+
+(define (final-boss frase)
+  (let fx((word (string->list frase)) (invertido '()) (palabras '()))
+    (cond
+    ((null? word) palabras)
+    ((equal? (car word) #\space) (cons (list->string invertido) palabras))
+    (else
+     (fx  (cdr word) (cons (car word) invertido) palabras ))
+    )
+   ) 
+  )
