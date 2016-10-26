@@ -1,0 +1,18 @@
+(define temp
+  (lambda(ls num str lista)
+    (cond
+      ((null? ls) (list num str lista))
+      ((number? (car ls)) (temp (cdr ls) (cons (car ls) num) str lista))
+      ((string? (car ls)) (temp (cdr ls) num (cons (car ls) str) lista))
+      ((list? (car ls)) (temp (cdr ls) num str (cons (car ls) lista)))
+    )
+  )
+  )
+
+(define group-by-type
+  (lambda(ls) (temp ls '() '() '()) 
+    )
+  )
+
+
+         

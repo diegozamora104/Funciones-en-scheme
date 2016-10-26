@@ -1,31 +1,22 @@
-(define reversa
-  (lambda(ls)
-    (cosa ls '())
- ))
+#lang racket
 
-(define cosa
-  (lambda(ls empty)
-    (if (null? ls)
-        empty
-        (cosa (cdr ls) (cons (car ls) empty))
-        )
+(define (reversa lista)
+  (let func ((ls lista) (empty '()))
+    (if (null? ls) empty
+        (func (cdr ls) (cons (car ls) empty))
+      )
     )
   )           
 
-(define temp
-  (lambda(lista fn lista_pos n lista_vacia)
+(define (selectivemap ls fun ls_pos)
+  (let func ((lista ls) (fn fun) (lista_pos ls_pos) (n 1) (lista_vacia '()))    
     (cond
       ((null? lista) (reversa lista_vacia))
-      ((null? lista_pos) (temp (cdr lista) fn lista_pos (+ n 1) (cons (car lista) lista_vacia)))
-      ((equal? n (car lista_pos)) (temp (cdr lista) fn (cdr lista_pos) (+ n 1) (cons (fn (car lista)) lista_vacia)))
+      ((null? lista_pos) (func (cdr lista) fn lista_pos (+ n 1) (cons (car lista) lista_vacia)))
+      ((equal? n (car lista_pos)) (func (cdr lista) fn (cdr lista_pos) (+ n 1) (cons (fn (car lista)) lista_vacia)))
       (else
-       (temp (cdr lista) fn lista_pos (+ n 1) (cons (car lista) lista_vacia)))
+       (func (cdr lista) fn lista_pos (+ n 1) (cons (car lista) lista_vacia)))
       )
-    )
-  )
-
-(define selectivemap
-  (lambda(lista fn lista_pos)(temp lista fn lista_pos 1 '())
     )
   )
 

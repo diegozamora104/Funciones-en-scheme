@@ -8,15 +8,24 @@
     )
   )
 
-(define (final-boss frase)
-  (let fx ((word (string->list frase)) (invertido '()) (palabras '()))
+(define (analizador lista dic)
+  (let func((temp lista) (texto '()) (diccionario dic))
     (cond
-      ((null? word) (list->string invertido))
-      ((equal? (car word) #\.) palabras)
-      ((equal? (car word) #\space) (cons (reverse invertido) palabras))
-      (else (fx (cdr word) (cons (car word) invertido) palabras ))
+      ((null? temp) texto)
+      ((equal? (caar diccionario) (car temp))((func temp (cons (car temp) texto) diccionario)))
+      )
+    )
+  )
+  
+(define (final-boss frase dic)
+  (let func ((word (string->list frase)) (invertido '()) (palabras '()))
+    (cond
+      ((equal? (car word) #\.) (analizador (cons (reverse invertido) palabras) dic))
+      ((equal? (car word) #\space) (func (cdr word) '() (cons (reverse invertido) palabras)))
+      (else
+       (func (cdr word) (cons (car word) invertido) palabras ))
     )
    ) 
   )
 
-;(final-boss "Hola mundo")
+;(final-boss "Hola mundo.")
