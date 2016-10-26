@@ -43,5 +43,6 @@
 
 ;(final-boss "Hoy mama y papa fueron de viaje, llevaron a hijo pero hija se quedo en casa." '(("papa" "Bob") ("hijo" "Carl") ("hija" "Diana") ("mama" "Alice")))
 
-;Usar STRING-APPEND?
+;(1)Usar STRING-APPEND?
 ;Qué pasa con el salto de linea????
+;(2) Nomenclatura, usar lambda en todos lados?, esta bien, esta mal

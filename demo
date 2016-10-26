@@ -1,0 +1,26 @@
+(define cosa (lambda(frase )
+  (let fx((word (string->list frase)) (invertido '()))
+    (if (null? word) (list->string invertido)
+        (fx  (cdr word) (cons (car word) invertido))
+     ))))
+;;;;;;;;;;;;;
+(define reversa
+  (lambda(ls)
+    (cosa ls '())
+ ))
+
+(define cosaReversa
+  (lambda(ls empty)
+    (if (null? ls)
+        empty
+        (cosaReversa (cdr ls) (cons (car ls) empty)))))
+       
+  
+(define palabra
+  (lambda (str ls)
+    (palabra)
+
+
+    
+    
+    
