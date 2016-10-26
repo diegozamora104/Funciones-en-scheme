@@ -19,11 +19,16 @@
 (define (analizador lista dic)
   (let func((temp lista) (texto '()))
     (cond 
-    ((null? temp) (->string texto))
+    ((null? temp) (append texto))
     ((aux (car temp) dic) (func (cdr temp) (cons (aux (car temp) dic) texto))) 
     )
   )
 )
+(define (append lista)
+        (let app ((empty (car lista)) (ls (cdr lista)))
+          (if (null? ls)
+              (string-append empty ".")
+              (app (string-append empty " " (car ls)) (cdr ls)))))
   
 (define (final-boss frase dic)
   (let func ((word (string->list frase)) (invertido '()) (palabras '()))
@@ -36,6 +41,7 @@
    ) 
   )
 
-;((final-boss "Hoy mama y papa fueron de viaje, llevaron a hijo pero
-;hija se quedo en casa." '(("papa" "Bob") ("hijo" "Carl") ("hija"
-;"Diana") ("mama" "Alice")))
+;(final-boss "Hoy mama y papa fueron de viaje, llevaron a hijo pero hija se quedo en casa." '(("papa" "Bob") ("hijo" "Carl") ("hija" "Diana") ("mama" "Alice")))
+
+;Usar STRING-APPEND?
+;Qué pasa con el salto de linea????
