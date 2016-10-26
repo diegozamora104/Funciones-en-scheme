@@ -1,12 +1,22 @@
-(define empy_list '())
+#lang racket
+
+(define (reverse lista)
+  (let func ((temp lista) (empty_list '()))
+  (if (null? temp) (list->string empty_list)
+      (func (cdr temp) (cons (car temp) empty_list))
+        )
+    )
+  )
 
 (define (final-boss frase)
-  (let fx((word (string->list frase)) (invertido '()) (palabras '()))
+  (let fx ((word (string->list frase)) (invertido '()) (palabras '()))
     (cond
-    ((null? word) palabras)
-    ((equal? (car word) #\space) (cons (list->string invertido) palabras))
-    (else
-     (fx  (cdr word) (cons (car word) invertido) palabras ))
+      ((null? word) (list->string invertido))
+      ((equal? (car word) #\.) palabras)
+      ((equal? (car word) #\space) (cons (reverse invertido) palabras))
+      (else (fx (cdr word) (cons (car word) invertido) palabras ))
     )
    ) 
   )
+
+;(final-boss "Hola mundo")
