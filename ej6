@@ -8,14 +8,22 @@
     )
   )
 
+(define (aux pbra dic)
+  (if(null? dic) pbra 
+  (if(equal? pbra (caar dic)) (cadar dic)
+     (aux pbra (cdr dic))
+     )
+  )
+)
+
 (define (analizador lista dic)
-  (let func((temp lista) (texto '()) (diccionario dic))
-    (cond
-      ((null? temp) texto)
-      ((equal? (caar diccionario) (car temp))((func temp (cons (car temp) texto) diccionario)))
-      )
+  (let func((temp lista) (texto '()))
+    (cond 
+    ((null? temp) (->string texto))
+    ((aux (car temp) dic) (func (cdr temp) (cons (aux (car temp) dic) texto))) 
     )
   )
+)
   
 (define (final-boss frase dic)
   (let func ((word (string->list frase)) (invertido '()) (palabras '()))
@@ -28,4 +36,6 @@
    ) 
   )
 
-;(final-boss "Hola mundo.")
+;((final-boss "Hoy mama y papa fueron de viaje, llevaron a hijo pero
+;hija se quedo en casa." '(("papa" "Bob") ("hijo" "Carl") ("hija"
+;"Diana") ("mama" "Alice")))
