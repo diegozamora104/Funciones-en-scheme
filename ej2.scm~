@@ -1,4 +1,4 @@
-#lang scheme
+#lang racket
 
 (define (reversa lista)
   (let func ((ls lista) (empty '()))

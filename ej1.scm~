@@ -1,4 +1,4 @@
-#lang scheme
+;#lang racket ;preguntar esto!
 
 (define (group-by-type paq)
   (let func((ls paq) (num '()) (str '()) (lista '()))
@@ -9,7 +9,7 @@
       ((list? (car ls)) (func (cdr ls) num str (cons (car ls) lista)))
     )
   )
-)
+  )
 
 
 
