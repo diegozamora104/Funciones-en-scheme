@@ -1,0 +1,11 @@
+(define bintree
+  (lambda(trees fn)
+    (while (cdr trees) fn (car trees))
+    ))
+
+(define while(trees fn final)
+  (if (null? trees)
+      ...
+      ;(while (cdr trees) fn final)
+      (branch (car trees) (final))))
+
