@@ -9,7 +9,7 @@
 
 (define nav
   (lambda (tree final fn)
-    (cons (fn (car tree) (car final))
+    (cons (fn (car final) (car tree))
       (append
        (if (null? (cadr tree))
            (list '());Left
