@@ -1,6 +1,6 @@
 #lang scheme
 
-(define F
+(define F ;FUNCION PRINCIPAL
   (lambda (n x f L m g A)
     (let func ((i 0) (num 1))
       (if(equal? i n)
@@ -25,8 +25,11 @@
       ((equal? y 1) x)
       (else 
        (* x (potencia x (- y 1)))))))
-
-(define determinante
+;
+; De aqui en adelante son las funciones que se
+;encargan de calcular el determinante  de grado n
+;
+(define determinante ;Funcion principal del determinante
   (lambda (mx i)
     (cond
       ((equal? 2 (length mx))
@@ -58,10 +61,9 @@
               (invertirMatriz (cdr matriz) (cons temp final))
               (invertir (cdr ls) (cons (car ls) temp)))))))
 
-(define iterador; Int:: i-esimo numero de la lista
+(define iterador; Retorna el i-esimo numero de la lista
   (lambda (ls i)
     (cond
       ((equal? i 1) (car ls))
       ((iterador (cdr ls) (- i 1))))))
 
-;(F 6 2 (lambda (x) (+ x x)) '(1 4 6 2 3) 3 (lambda (x) (* x 2)) -2)

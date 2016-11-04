@@ -1,15 +1,16 @@
 #lang scheme
 
-(define operate-bintrees
-  (lambda (lsarboles funcion)
-    (let func ((base (car lsarboles))(arbol (cdr lsarboles))(op funcion))
-      (if (null? arbol)
+(define operate-bintrees; Funcion principal
+  (lambda (lstree funcion)
+    (let func ((base (car lstree))(arbol (cdr lstree))(op funcion))
+      (if (null? arbol);(func) : entrega dos arboles a la funcion nav 
           base
         (func (nav (car arbol) base op) (cdr arbol) op )))))
 
-(define nav
+(define nav; navega simultáneamente a través de dos arboles binarios 
   (lambda (tree final fn)
-    (cons (fn (car tree) (car final))
+    (cons
+      (fn (car tree) (car final));
       (append
        (if (null? (cadr tree))
            (list '());Left
@@ -18,5 +19,3 @@
            (list '());Right
            (list (nav (caddr tree) (caddr final) fn)))))))
       
-;(define trees '((1 (2 () ()) (3 () ())) (1 (1 () ()) (1 () ())) (7 (8() ()) (9 () ()))))
-;(operate-bintrees trees +)
