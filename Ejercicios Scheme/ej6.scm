@@ -28,7 +28,9 @@
     (let app ((empty (car lista)) (ls (cdr lista)))
       (if (null? ls)
           (string-append empty ".")
-          (app (string-append empty " " (car ls)) (cdr ls))))))
+          (if (equal? "," (car ls))
+              (app (string-append empty (car ls)) (cdr ls))
+          (app (string-append empty " " (car ls)) (cdr ls)))))))
   
 (define final-boss
   (lambda (frase dic)
@@ -36,9 +38,11 @@
       (cond
         ((equal? (car word) #\.)
           (analizador (cons (reverse invertido) palabras) dic))
+        ((equal? (car word) #\,)
+          (func (cdr word) (list #\,) (cons (reverse invertido) palabras )))
         ((equal? (car word) #\space)
-          (func (cdr word) '() (cons (reverse invertido) palabras)))
+          (func (cdr word) '() (cons (reverse invertido) palabras )))
         (else
-         (func (cdr word) (cons (car word) invertido) palabras ))))))
+         (func (cdr word) (cons (car word) invertido) palabras))))))
 
 ;(final-boss "Hoy mama y papa fueron de viaje, llevaron a hijo pero hija se quedo en casa." '(("papa" "Bob") ("hijo" "Carl") ("hija" "Diana") ("mama" "Alice")))

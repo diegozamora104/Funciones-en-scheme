@@ -9,8 +9,12 @@
 
 (define nav; navega simultáneamente a través de dos arboles binarios 
   (lambda (tree final fn)
+<<<<<<< HEAD
     (cons
       (fn (car tree) (car final));
+=======
+    (cons (fn (car final) (car tree))
+>>>>>>> 50db3048db4527a408b9d3a2ff5230d139f7f8ca
       (append
        (if (null? (cadr tree))
            (list '());Left
